@@ -1,0 +1,45 @@
+[colors.primary]
+# background = "#1c1c1c"
+# background = "#000000"
+background = "#212121"
+foreground = "#ececec"
+
+# set to "Caskaydia Cove" in linux
+[font]
+size = 13
+offset = { x = 2, y = -2 }
+[font.bold]
+family = "Caskaydia Cove"
+style = "Bold"
+
+[font.italic]
+family = "Caskaydia Cove"
+style = "Italic"
+
+[font.bold_italic]
+family = "Caskaydia Cove"
+style = "Bold Italic"
+
+[font.normal]
+family = "Caskaydia Cove"
+style = "Regular"
+
+
+
+
+# [shell]
+# args = ["-d", "ubuntu"]
+# program = 'C:\Windows\System32\wsl.exe'
+# working_directory = "/mnt/c/"
+
+[window]
+# startup_mode = "Fullscreen"
+decorations_theme_variant = "Dark"
+opacity = 0.66
+# opacity = 1.0
+title = "VimMachine"
+resize_increments = true
+dimensions = {columns=80, lines=30}
+
+# [debug]
+# renderer =  "Glsl3"

@@ -1,0 +1,5 @@
+require("kleid.remap")
+require("kleid.set")
+require("kleid.statusline")
+require("kleid.help")
+require("kleid.functions")

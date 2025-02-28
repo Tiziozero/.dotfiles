@@ -1,0 +1,29 @@
+[global]
+    font = Monospace 9
+    format = "%s"  # Show notification text without icons or extra decoration
+    alignment = left
+    geometry = "300x50-20+40"   # Adjust size and position
+    padding = 8                 # Add padding for a cleaner look
+    frame_width = 1             # Thin frame width
+    separator_height = 2        # Minimal separator height
+    transparency = 5            # Light transparency (adjust if needed)
+    icon_position = left        # Icon positioning, if icons are enabled
+    show_age_threshold = 60     # Show notification age if older than 60 seconds
+
+[urgency_low]
+    background = "#282A2E"      # Matches Polybar background
+    foreground = "#C5C8C6"      # Matches Polybar foreground
+    frame_color = "#282A2E"     # Border color (set to background for a clean look)
+    timeout = 3
+
+[urgency_normal]
+    background = "#282A2E"
+    foreground = "#F0C674"      # Primary color to match Polybar
+    frame_color = "#282A2E"
+    timeout = 5
+
+[urgency_critical]
+    background = "#A54242"      # Alert color
+    foreground = "#FFFFFF"
+    frame_color = "#A54242"
+    timeout = 0                 # No timeout for critical notifications

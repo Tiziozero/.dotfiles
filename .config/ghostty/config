@@ -1,0 +1,32 @@
+# color.
+background = 212121
+foreground = ececec
+background-opacity = 0.85
+
+# font
+font-family = Caskaydia Mono NFM
+font-size = 16
+
+# window
+window-width = 80
+window-height = 30
+window-padding-x = 0
+window-padding-y = 0
+window-decoration = false
+
+# other
+copy-on-select = true
+
+# key bindings
+# keybind = ctrl+z=close_surface
+# keybind = ctrl+d=new_split:right
+keybind = ctrl+d=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind

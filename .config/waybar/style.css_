@@ -1,0 +1,37 @@
+* {
+  font-family: "Caskaydia Mono NFM", sans-serif;
+  font-weight:bolder;
+  font-size: 16px;
+    color: #212121;
+}
+
+window#waybar {
+  background: #ececec;
+  color: #212121;
+  border-radius: 6px;
+}
+#workspaces {
+    color: #212121;
+}
+#workspaces button.active {
+    color: #212121;
+  margin-left: 100;
+}
+
+#workspaces button.focused {
+    color: #212121;
+    background: #d0d0d0;
+    border-radius: 10px;
+}
+
+#workspaces button.urgent {
+    color: #212121;
+    background: #f0d0d0;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background: #303030;
+    color: #f0f0f0;
+    border-radius: 10px;
+}
