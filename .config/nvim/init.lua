@@ -1,5 +1,7 @@
 vim.lsp.set_log_level("ERROR")
 vim.lsp.set_log_level("ERROR")
+vim.opt.clipboard = "unnamedplus"
+
 require("kleid")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

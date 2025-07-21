@@ -244,3 +244,9 @@ exec_always {
     gsettings set org.gnome.desktop.interface icon-theme 'Yaru'
 }
 bindsym $mod+Shift+p exec $HOME/.config/scripts/power_profile.sh
+bindsym $mod+Shift+o exec pkill swaybg & pkill mpvpaper
+
+# for setting default there - yaru dark idealy
+# gsettings set org.gnome.desktop.interface gtk-theme 'Yaru'
+# gsettings set org.gnome.desktop.interface icon-theme 'Yaru'
+

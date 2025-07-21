@@ -1,7 +1,10 @@
 # color.
-background = 212121
+# background = 212121
+background = 000000
 foreground = ececec
-background-opacity = 0.85
+# background-opacity = 0.85
+background-opacity = 0.75
+
 
 # font
 font-family = Caskaydia Mono NFM
@@ -30,3 +33,4 @@ keybind = alt+6=unbind
 keybind = alt+7=unbind
 keybind = alt+8=unbind
 keybind = alt+9=unbind
+keybind = ctrl+shift+r=reload_config
