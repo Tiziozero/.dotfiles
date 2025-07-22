@@ -62,11 +62,11 @@ return {
             on_attach = on_attach,
             capabilities = capabilities
         }
-        lsp.tsserver.setup {
+        --[[ lsp.tsserver.setup {
             on_attach = on_attach,
             capabilities = capabilities,
             -- cmd = { "bunx", "tsserver" },
-        }
+        } ]]
         lsp.htmx.setup {
             on_attach = on_attach,
             capabilities = capabilities,

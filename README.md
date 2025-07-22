@@ -130,9 +130,9 @@ sudo apt install neovim
 ### Additionl Tools
 - **Additional tooks**: used for playback, screenshots, etc...
 ```bash
-sudo apt install xbacklight redshift flameshot scrot playerctl feh dex alsa-utils xss-lock xautolock lxappearance touchegg
+sudo apt install xbacklight redshift flameshot scrot playerctl feh dex alsa-utils xss-lock xautolock lxappearance touchegg brightnessctl
 ```
-> **NOTE**: Install amixer for volume control, xss-lock and xautolock for auto-locking functionality, and lxappearance for customizing themes and icons.
+> **NOTE**: Install amixer for volume control, xss-lock and xautolock for auto-locking functionality, and lxappearance for customizing themes and icons. Add user to video group and add non-root privilages to brightnessctl
 
 ### Logitech Device Support
 - **logid**: Logitech device driver daemon
