@@ -113,6 +113,7 @@
             "spacing": 10
         },
         "clock": {
+            "format": "{:%H:%M - %d/%m}",
             // "timezone": "America/New_York",
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
             "format-alt": "{:%Y-%m-%d}"
