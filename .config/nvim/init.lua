@@ -1,5 +1,6 @@
 -- everything works for me
 vim.g.mapleader = " "
+vim.opt.swapfile = false
 vim.opt.winborder = "rounded"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
