@@ -19,7 +19,7 @@ vim.pack.add({
     { src = "https://github.com/ThePrimeagen/harpoon" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/vrischmann/tree-sitter-templ" },
-    { src = "https://github.com/nvim-telescope/telescope.nvim", version = "0.9.2" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
 
     { src = "https://github.com/williamboman/mason.nvim" },
