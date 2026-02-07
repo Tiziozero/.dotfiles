@@ -2,14 +2,26 @@
 vim.g.mapleader = " "
 vim.opt.swapfile = false
 vim.opt.winborder = "rounded"
+vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.showtabline = 4
+vim.opt.softtabstop = 4
+-- vim.opt.showtabline = 4
 vim.opt.signcolumn = "yes"
 vim.opt.smartindent = true
 vim.opt.wrap = true
 -- vim.opt.cursorcolumn = false
 vim.opt.colorcolumn = "80"
+vim.opt.mouse = ""
+-- show tab/spaces
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = "▸ ",
+  space = "·",
+  trail = "·",
+}
+
+
 
 
 
@@ -138,3 +150,20 @@ vim.filetype.add({
     gala = "rust",
   },
 })
+-- old remaps
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- replace in file under cursor
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- next error
+vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
+
+
