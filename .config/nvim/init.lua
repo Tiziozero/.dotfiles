@@ -34,12 +34,15 @@ vim.pack.add({
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
 
+    { src = "https://github.com/ellisonleao/gruvbox.nvim.git" }, -- cholorscheme
+
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/hrsh7th/nvim-cmp" },
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
     { src = "https://github.com/L3MON4D3/LuaSnip" },
+    { src = "https://github.com/ej-shafran/compile-mode.nvim" },
 })
 -- make background transparent
 vim.cmd[[colorscheme oxocarbon ]]
@@ -124,6 +127,114 @@ function silly_mason_bs()
 
 end
 silly_mason_bs()
+-- nvim compile mode
+vim.g.compile_mode = {
+    -- The string to show in the compile prompt as a default.
+    -- For an empty prompt, you can use:
+    -- default_command = "",
+    -- To use different defaults based on filetype, you can use a table:
+    -- default_command = {
+    --   python = "python %",
+    --   lua = "lua %",
+
+    --   javascript = "bun %",
+    --   typescript = "bun %",
+    --   c = "cc -o %:r % && ./%:r",
+    --   cpp = "cc -std=c++23 -o %:r % && ./%:r",
+    --   java = "javac % && java %:r",
+    --   go = "go run %",
+    -- },
+    -- A function which returns the default command string is also supported:
+    -- default_command = function()
+    --   local filetype = vim.bo.filetype
+    --   if filetype == "python" then
+    --     return "python %"
+    --   else
+    --     return "make -k "
+    --   end
+    -- end,
+    -- :h compile_mode.default_command
+    default_command = "make -k ",
+    -- Use `baleia` for parsing ANSI escape codes in the output.
+    -- :h compile_mode.baleia_setup
+
+    baleia_setup = false,
+    -- Expand commands, like `:!` (e.g. `:Compile echo %`)
+    -- :h compile_mode.bang_expansion
+    bang_expansion = false,
+    -- Configure additional error regexes.
+    -- :h compile-mode-errors
+    error_regexp_table = {},
+    -- List of filename regexes to ignore errors from.
+
+    -- :h compile-mode.error_ignore_file_list
+    error_ignore_file_list = {},
+    -- The minimum error level to jump to.
+    -- :h compile-mode.error_threshold
+    error_threshold = require("compile-mode").level.WARNING,
+    -- Automatically jump to the first error.
+    -- :h compile-mode.auto_jump_to_first_error
+
+    auto_jump_to_first_error = false,
+    -- How long to highlight an error's location when jumping to it.
+    -- :h compile-mode.error_locus_highlight
+    error_locus_highlight = 500,
+    -- Use Neovim diagnostics instead of opening the compilation buffer.
+
+    -- :h compile-mode.use_diagnostics
+    use_diagnostics = false,
+    -- Default to calling `:Compile` for `:Recompile`
+
+    -- when there's no previous command.
+    -- :h compile-mode.recompile_no_fail
+    recompile_no_fail = false,
+    -- Ask to save unsaved buffers before compiling.
+    -- :h compile-mode.ask_about_save
+    ask_about_save = true,
+    -- Ask to interrupt already running commands.
+    -- :h compile-mode.ask_to_interrupt
+
+    ask_to_interrupt = true,
+    -- The name for the compilation buffer.
+
+    -- :h compile-mode.buffer_name
+    buffer_name = "*compilation*",
+    -- The format for the time information
+    -- at the top of the compilation buffer
+    -- :h compile-mode.time_format
+    time_format = "%a %b %e %H:%M:%S",
+    -- List of regexes to hide from the output.
+    -- :h compile-mode.hidden_output
+    hidden_output = {},
+    -- A table of environment variables to pass to commands.
+    -- :h compile-mode.environment
+    environment = nil,
+    -- Clear all environment variables for each command.
+    -- :h compile-mode.clear_environment
+    clear_environment = false,
+    -- Fix compilation for plugins like `nvim-cmp`.
+    -- :h compile-mode.input_word_completion
+    input_word_completion = false,
+    -- Hide the compliation buffer.
+    -- :h compile-mode.hidden_buffer
+    hidden_buffer = false,
+    -- Automatically focus the compilation buffer.
+    -- :h compile-mode.focus_compilation_buffer
+    focus_compilation_buffer = false,
+    -- Automatically move the cursor to the end of the compilation buffer.
+    -- :h compile-mode.auto_scroll
+    auto_scroll = true,
+    -- Jump back past the end/beginning of the errors
+    -- with `:NextError`/`:PrevError`
+    -- :h compile-mode.use_circular_error_navigation
+    use_circular_error_navigation = false,
+    -- Print debug information.
+    -- :h compile-mode.debug
+    debug = false,
+    -- Use a pseudo terminal for command execution.
+    -- :h compile-mode.use_pseudo_terminal
+    use_pseudo_terminal = false,
+}
 
 
 -- other remaps
@@ -147,7 +258,7 @@ vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, sile
 -- add gala as rust highlight
 vim.filetype.add({
   extension = {
-    gala = "rust",
+    -- gala = "rust",
   },
 })
 -- old remaps
@@ -162,8 +273,53 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 -- replace in file under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- "Compile"
+vim.keymap.set({"n", "v"}, "<leader>c", ":below Compile<CR>")
 -- next error
 vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
 
+-- test cholorscheme
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
 
+-- Default options:
+require("gruvbox").setup({
+  terminal_colors = false, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "soft", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
+vim.cmd("colorscheme gruvbox")
+
+vim.cmd.colorscheme("monokai-dimmed")
+
+-- background
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "Statusline", { bg = "none" })
+
+-- statusline bs
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, 'LineNr', { bg = nil })
+
+vim.cmd[[hi StatusLine guibg=NONE ctermbg=NONE]]
+vim.cmd[[hi StatusLineNC guibg=NONE ctermbg=NONE]]
