@@ -323,3 +323,9 @@ vim.cmd.colorscheme("monokai-dimmed")
 
 vim.cmd[[hi StatusLine guibg=NONE ctermbg=NONE]]
 vim.cmd[[hi StatusLineNC guibg=NONE ctermbg=NONE]]
+-- init.lua
+vim.filetype.add({
+  extension = {
+    gala = "gala",
+  },
+})
