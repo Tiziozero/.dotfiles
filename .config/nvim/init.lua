@@ -145,12 +145,6 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', ':tabnext<CR>', { noremap = true, silent
 vim.api.nvim_set_keymap('n', '<C-S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
 
--- add gala as rust highlight
-vim.filetype.add({
-  extension = {
-    -- gala = "rust",
-  },
-})
 -- old remaps
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -226,3 +220,30 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.tabstop = 4
     end,
 })
+-- gala highlight
+vim.filetype.add({
+  extension = {
+    gala = "gala",
+  },
+})
+
+
+local function build_odin_split()
+    print("build");
+    -- vim.cmd("vsplit")
+    vim.cmd("botright vsplit")
+    -- vim.cmd("wincmd l")
+    vim.cmd("wincmd l")
+
+    vim.cmd("vertical resize 30");
+
+    --[[ vim.fn.termopen({ "odin", "run", "."}, {
+        on_exit = function(_, code, _)
+            vim.schedule(function() print("odin exited with status code ".. code) end)
+        end,
+    }) ]]
+    vim.cmd("terminal odin run .");
+    -- vim.cmd("wincmd h")
+    -- vim.cmd("startinsert");
+end
+vim.keymap.set("n", "<C-g>", build_odin_split)
