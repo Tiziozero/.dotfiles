@@ -23,18 +23,18 @@ vim.opt.listchars = {
 
 
 
-
-
 vim.pack.add({
     { src = "https://github.com/nyoom-engineering/oxocarbon.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/ThePrimeagen/harpoon" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", lazy = false }, -- build = ":TSUpdate" },
     { src = "https://github.com/vrischmann/tree-sitter-templ" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
 
     { src = "https://github.com/ellisonleao/gruvbox.nvim.git" }, -- cholorscheme
+    { src = "https://github.com/rose-pine/neovim.git" }, -- rose-pine
+    { src = "https://github.com/metalelf0/black-metal-theme-neovim.git" }, -- black-metal
 
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
@@ -94,7 +94,7 @@ require('telescope').setup{
 }
 local builtin = require('telescope.builtin')
 vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Grep all files" })
-vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+vim.keymap.set("n", "<leader>f", builtin.find_files, {})
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 
 local function silly_mason_bs()
@@ -142,7 +142,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("i", "<C-c>", "<Esc>")
 -- tabs
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':tabnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-S-Tab>', ':tabprevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-Tab>', ':tabprevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })
 
 -- old remaps
@@ -191,9 +191,9 @@ require("gruvbox").setup({
   dim_inactive = false,
   transparent_mode = false,
 })
-vim.cmd("colorscheme gruvbox")
 
-vim.cmd.colorscheme("monokai-dimmed")
+-- vim.cmd.colorscheme("monokai-dimmed")
+vim.cmd.colorscheme("rose-pine")
 
 -- background
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -205,12 +205,22 @@ vim.cmd.colorscheme("monokai-dimmed")
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 -- vim.api.nvim_set_hl(0, 'LineNr', { bg = nil })
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "Statusline", { bg = "none" })
-vim.cmd[[hi StatusLine guibg=NONE ctermbg=NONE]]
-vim.cmd[[hi StatusLineNC guibg=NONE ctermbg=NONE]]
+function make_bg_clear() 
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Statusline", { bg = "none" })
+    vim.cmd[[hi StatusLine guibg=NONE ctermbg=NONE]]
+    vim.cmd[[hi StatusLineNC guibg=NONE ctermbg=NONE]]
+end
 
+function setcs(cs)
+    vim.cmd.colorscheme(cs)
+    make_bg_clear()
+end
+
+setcs("monokai-dimmed")
+setcs("rose-pine")
+setcs("bathory")
 -- expand tab golan
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
@@ -247,3 +257,12 @@ local function build_odin_split()
     -- vim.cmd("startinsert");
 end
 vim.keymap.set("n", "<C-g>", build_odin_split)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact", "htlm" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end,
+})
