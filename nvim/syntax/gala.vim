@@ -1,0 +1,1 @@
+/home/kleidi/code/onin_gala/syntax/gala.vim

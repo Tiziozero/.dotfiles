@@ -64,17 +64,17 @@ fi
 unset color_prompt force_color_prompt
 ## remove silly colors
 PS1='\u@\h:\w\$ '
-PS1='\u: \W\$ '
+PS1='\W\$ '
 
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# case "$TERM" in
+# xterm*|rxvt*)
+    # PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    # ;;
+# *)
+    # ;;
+# esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -133,16 +133,6 @@ function snoe() {
 }
 # export PATH="$HOME/go/bin:$PATH"
 
-alias t='tmux'
-
-alias tn='tmux new-session -s'
-
-alias ta='tmux attach -t'
-
-alias n='nvim'
-alias please='sudo'
-alias pls='sudo'
-
 # alias python3='python3.10'
 # alias py='python3.10'
 export EDITOR=vim
@@ -167,12 +157,24 @@ function yy() {
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
+
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:/home/$USER/.local/bin"
 export GOLANGGORILLASESSIONSKEY="asdjnalsdjkna"
+export PATH="$PATH:$HOME/.config/scripts"
 
 alias p="python3"
 alias py="python3"
 alias python="python3"
 alias nano="nvim"
-. "$HOME/.cargo/env"
+alias btc="bluetoothctl"
+alias pc="pactl"
+alias ppc="powerprofilesctl"
+alias m="yazi"
+alias t='tmux'
+alias tn='tmux new-session -s'
+alias ta='tmux attach -t'
+alias n='nvim'
+alias please='sudo'
+alias pls='sudo'
+alias rs='source ~/.bashrc'
